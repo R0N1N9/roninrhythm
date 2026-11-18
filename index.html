@@ -1,63 +1,536 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RoninRhythm</title>
-<meta name="description" content="RoninRhythm: Classes and private sessions where movement builds confidence, connection and body awareness. A RoninSec brand. Coming soon.">
-<meta name="theme-color" content="#121412">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23B49F80'/%3E%3C/svg%3E">
+<meta name="description" content="Ronin Rhythm — nomadic partner dancer and DJ. Bachazomba, Kizchata, Bachata, Kizomba and fusion lessons in whatever city I'm in next.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Zen+Antique&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Zen+Antique&display=swap" rel="stylesheet">
 <style>
-/* Holding page: one centered column on matte black. Shares the RoninSec palette; RoninRhythm's own accent. */
-:root {
-  color-scheme: dark;
-  --paper: #121412; --paper-2: #1C1F1E; --ink: #DAD6CA; --ink-2: #9A978A; --rule: #2D3230;
-  --accent: #B49F80; --red: #B03A36;
-  --f-display: "Zen Antique", "Hiragino Mincho ProN", Georgia, serif;
-  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+/* Layout idea: a night social floor on the RoninSec matte black. Shares the RoninSec palette and type;
+   the 8-count runs through the page as structure. Red is the ronin's seal, brass the RoninRhythm accent. */
+:root{
+  --ink:#121412;
+  --night:#1C1F1E;
+  --line:#2D3230;
+  --paper:#DAD6CA;
+  --mist:#9A978A;
+  --seal:#B03A36;
+  --brass:#B49F80;
+  --display:"Zen Antique","Hiragino Mincho ProN",Georgia,serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
 }
-*, *::before, *::after { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-  margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.6 var(--f-body);
-  -webkit-font-smoothing: antialiased;
-  display: grid; grid-template-rows: 1fr auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.mono { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
-main { align-self: center; width: 100%; max-width: 44rem; margin-inline: auto; padding-block: 64px; display: grid; gap: 22px; }
-.kicker { color: var(--accent); display: flex; align-items: center; gap: 10px; margin: 0; }
-.kicker::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
-h1 { font: 400 clamp(3rem, 11vw, 6rem)/1 var(--f-display); margin: 0; letter-spacing: .005em; text-wrap: balance; }
-h1 em { font-style: normal; color: var(--accent); }
-p.line { margin: 0; color: var(--ink-2); font-size: 1.15rem; max-width: 34rem; }
-.status { justify-self: start; padding: .3rem .6rem; border: 1px solid var(--red); color: var(--red); border-radius: 2px; }
-.back { justify-self: start; text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; font-weight: 500; }
-.back:hover { color: var(--accent); }
-.jp { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--ink-2); display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
-.jp b { font: 400 1.6rem/1 var(--f-display); color: var(--ink); }
-footer { border-top: 1px solid var(--rule); padding-block: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; color: var(--ink-2); max-width: 72rem; width: 100%; margin-inline: auto; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--paper)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.02}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.brand{font-family:var(--display);font-weight:400;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.seal{width:22px;height:22px;background:var(--seal);border-radius:3px;display:grid;place-items:center;font-size:12px;color:#f3efe6;font-weight:600;transform:rotate(-4deg)}
+nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
+nav ul a{text-decoration:none;color:var(--mist);font-size:15px}
+nav ul a:hover{color:var(--paper)}
+.cta{background:var(--seal);color:#f3efe6;border:0;font:600 15px var(--body);padding:10px 18px;border-radius:999px;text-decoration:none;cursor:pointer}
+.cta:hover{background:#c4443f}
+@media (max-width:760px){nav ul{display:none}}
+
+/* hero */
+.hero{position:relative;padding:72px 0 40px;overflow:hidden}
+.hero h1{font-size:clamp(56px,11vw,140px);letter-spacing:.005em}
+.hero h1 em{font-style:normal;color:var(--brass)}
+.hero h1 .dot{color:var(--seal)}
+.hero .lede{max-width:560px;font-size:20px;color:var(--paper);margin:28px 0 0}
+.hero .lede b{color:var(--brass);font-weight:600}
+.hero-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
+.ghost{border:1px solid var(--line);color:var(--paper);padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px}
+.ghost:hover{border-color:var(--mist)}
+.count{margin-top:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0}
+.count canvas{display:block;width:100%;height:120px}
+.count-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;color:var(--mist)}
+.count-legend span b{color:var(--paper);font-weight:500}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--line)}
+.stat{padding:28px 20px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--display);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n sup{color:var(--seal);font-size:24px}
+.stat p{margin:8px 0 0;color:var(--mist);font-size:15px}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* sections */
+section{padding:96px 0}
+.sec-head{display:grid;grid-template-columns:120px 1fr;gap:24px;margin-bottom:48px;align-items:baseline}
+.sec-head .mono{color:var(--seal)}
+.sec-head h2{font-size:clamp(36px,5vw,58px)}
+.sec-head p{grid-column:2;max-width:620px;color:var(--mist);margin:16px 0 0}
+@media (max-width:640px){.sec-head{grid-template-columns:1fr}.sec-head p{grid-column:1}}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
+.about p{margin:0 0 18px;max-width:62ch}
+.about p:first-child{font-size:22px;line-height:1.45}
+.code{border:1px solid var(--line);border-radius:6px;padding:28px;background:var(--night);align-self:start}
+.code h3{font-size:20px;margin-bottom:16px}
+.code ol{margin:0;padding:0;list-style:none;counter-reset:c;display:grid;gap:14px}
+.code li{counter-increment:c;display:grid;grid-template-columns:34px 1fr;gap:8px}
+.code li::before{content:counter(c,decimal-leading-zero);font-family:var(--mono);color:var(--brass);font-size:14px;padding-top:2px}
+@media (max-width:860px){.about{grid-template-columns:1fr}}
+
+/* styles */
+.styles{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.style{border:1px solid var(--line);border-radius:6px;padding:28px;background:var(--night);display:flex;flex-direction:column;gap:12px}
+.style.primary{border-color:color-mix(in srgb,var(--seal) 55%,var(--line))}
+.style .tag{align-self:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--mist)}
+.style.primary .tag{background:var(--seal);border-color:var(--seal);color:#f3efe6}
+.style h3{font-size:32px}
+.style p{margin:0;color:var(--paper);opacity:.88}
+.style .meta{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:16px;color:var(--mist);font-family:var(--mono);font-size:13px}
+.style .meta b{color:var(--brass);font-weight:500}
+.also{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:20px 0 0}
+.also .mono{color:var(--mist);margin-right:6px}
+.chip{border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:15px}
+@media (max-width:760px){.styles{grid-template-columns:1fr}}
+
+/* lessons */
+.lessons{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.lesson{padding:28px 22px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.lesson:last-child{border-right:0}
+.lesson .mono{color:var(--brass)}
+.lesson h3{font-size:24px}
+.lesson p{margin:0;color:var(--mist);font-size:16px}
+.lesson ul{margin:0;padding-left:18px;font-size:15px;color:var(--paper)}
+@media (max-width:960px){.lessons{grid-template-columns:repeat(2,1fr)}.lesson:nth-child(2){border-right:0}.lesson:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:560px){.lessons{grid-template-columns:1fr}.lesson{border-right:0;border-bottom:1px solid var(--line)}}
+.note{margin-top:28px;color:var(--mist);font-size:15px}
+
+/* dj */
+.dj{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.dj p{margin:0 0 18px;max-width:58ch}
+.setlist{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.setlist .row{display:grid;grid-template-columns:70px 1fr auto;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);align-items:center}
+.setlist .row:last-child{border-bottom:0}
+.setlist .row .t{font-family:var(--mono);color:var(--mist);font-size:13px}
+.setlist .row .bpm{font-family:var(--mono);font-size:13px;color:var(--brass);font-variant-numeric:tabular-nums}
+.setlist .head{background:var(--night);color:var(--mist)}
+@media (max-width:860px){.dj{grid-template-columns:1fr}}
+
+/* road */
+.road{background:var(--night);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.road-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.road canvas{width:100%;height:320px;display:block}
+.road p{max-width:56ch;margin:0 0 18px}
+@media (max-width:860px){.road-grid{grid-template-columns:1fr}}
+
+/* booking */
+.book{display:grid;grid-template-columns:1fr 1.2fr;gap:56px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:14px;color:var(--mist)}
+input,select,textarea{background:var(--night);border:1px solid var(--line);color:var(--paper);border-radius:6px;padding:12px 14px;font:16px var(--body)}
+textarea{min-height:120px;resize:vertical}
+form .cta{grid-column:1/-1;justify-self:start;padding:14px 26px;font-size:16px}
+.out{grid-column:1/-1;display:none;border:1px solid var(--brass);border-radius:6px;padding:18px;background:var(--ink)}
+.out.on{display:block}
+.out pre{white-space:pre-wrap;font:14px/1.55 var(--mono);margin:0 0 14px;color:var(--paper)}
+.out .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.out .msg{color:var(--mist);font-size:14px}
+.contact{display:grid;gap:18px;align-content:start}
+.contact .item{border-top:1px solid var(--line);padding-top:14px}
+.contact .item .mono{color:var(--mist);display:block;margin-bottom:4px}
+.contact .item a,.contact .item span{font-size:18px}
+@media (max-width:860px){.book{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+
+/* sway */
+.sway{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.sway p{max-width:58ch;margin:0 0 18px}
+.sway-card{border:1px solid var(--line);border-radius:6px;background:var(--night);padding:28px;display:grid;gap:16px}
+.sway-card .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.sway-card .name{font-family:var(--display);font-size:40px;line-height:1}
+.sway-card .name em{font-style:normal;color:var(--brass)}
+.badge{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1px solid var(--seal);color:var(--seal)}
+.badge.live{border-color:var(--brass);color:var(--brass)}
+.sway-card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.sway-card li{display:grid;grid-template-columns:22px 1fr;gap:8px;color:var(--paper)}
+.sway-card li::before{content:"→";color:var(--brass);font-family:var(--mono)}
+@media (max-width:860px){.sway{grid-template-columns:1fr}}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:40px 0 56px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
+.family{display:flex;align-items:center;gap:14px;text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:14px 18px}
+.family:hover{border-color:var(--brass)}
+.family small{display:block;color:var(--mist);font-size:13px}
+.family strong{font-family:var(--display);font-size:20px;font-weight:400}
+footer .fine{color:var(--mist);font-size:14px}
 </style>
 </head>
 <body>
-<main>
-  <p class="kicker mono">Dance instruction · Music production</p>
-  <h1>Ronin<em>Rhythm</em></h1>
-  <p class="line">Classes and private sessions where movement builds confidence, connection and body awareness.</p>
-  <span class="status mono">Coming soon</span>
-  <a class="back" href="https://r0n1n9.github.io/roninsec/">Back to RoninSec <span aria-hidden="true">→</span></a>
-  <div class="jp"><b lang="ja">拍子</b><span class="mono">Hyōshi · rhythm, timing</span></div>
-</main>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="seal">浪</span>RoninRhythm</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#styles">Styles</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#dj">DJ</a></li>
+      <li><a href="#road">On the road</a></li>
+      <li><a href="#sway">Find events</a></li>
+    </ul>
+    <a class="cta" href="#book">Book a lesson</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="mono" style="color:var(--brass);margin:0 0 18px">Dance instruction · DJ &amp; music production · No fixed address</p>
+    <h1>Ronin<em>Rhythm</em><span class="dot">.</span></h1>
+    <p class="lede">A masterless dancer working the road. I teach <b>Bachazomba</b> and <b>Kizchata</b>, the fusions where Bachata's music meets Kizomba's connection, in whatever city the next social takes me.</p>
+    <div class="hero-row">
+      <a class="cta" href="#book">Book a lesson in your city</a>
+      <a class="ghost" href="#dj">Hire me to DJ</a>
+    </div>
+    <div class="count" aria-hidden="true">
+      <canvas id="pulse"></canvas>
+      <div class="count-legend mono">
+        <span><b>Kizomba</b> · slow, grounded pulse</span>
+        <span><b>Bachata</b> · 1 2 3 <b>tap</b> 5 6 7 <b>tap</b></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">200<sup>+</sup></div><p>dance venues danced in</p></div>
+    <div class="stat"><div class="n">US<sup>+</sup></div><p>coast to coast, plus international floors</p></div>
+    <div class="stat"><div class="n">2</div><p>signature fusions: Bachazomba &amp; Kizchata</p></div>
+    <div class="stat"><div class="n">1:1</div><p>private, couples and group lessons</p></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono">01 / About</span><h2>The ronin way</h2></div>
+    <div class="about">
+      <div>
+        <p>A ronin had no lord and no fixed home, only a discipline carried from place to place. That's how I dance.</p>
+        <p>I'm a nomad. I live on the road across the United States and abroad, and I've danced at more than 200 venues: studio socials, festival ballrooms, rooftop pop-ups, and the small weeknight bachata nights that every scene depends on.</p>
+        <p>Every floor taught me something. Leads and follows dance differently in every city, and that range shows up in how I teach. You'll learn technique that travels, so you can walk into any social anywhere and connect with whoever's in front of you.</p>
+      </div>
+      <div class="code">
+        <h3>What I teach by</h3>
+        <ol>
+          <li><span><strong>Connection first.</strong> The frame and the embrace come before the pattern.</span></li>
+          <li><span><strong>Musicality you can feel.</strong> Hear the guitar, the bass, the break, and dance to them.</span></li>
+          <li><span><strong>Leads and follows both.</strong> Clear signals, real listening, no forcing.</span></li>
+          <li><span><strong>Floorcraft and respect.</strong> Social dancing is shared space. Consent and comfort always.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="styles" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono">02 / Styles</span><h2>What I dance</h2>
+      <p>My specialty is the space between Bachata and Kizomba. I also dance the source styles on their own, with working experience in Salsa and Zouk.</p></div>
+    <div class="styles">
+      <article class="style primary">
+        <span class="tag">Signature</span>
+        <h3>Bachazomba</h3>
+        <p>Kizomba's close embrace, weight transfer and walking flow carried onto Bachata music. Smooth, grounded and very connected.</p>
+        <div class="meta"><span>Music <b>Bachata</b></span><span>Feel <b>Kizomba</b></span><span>Hold <b>close</b></span></div>
+      </article>
+      <article class="style primary">
+        <span class="tag">Signature</span>
+        <h3>Kizchata</h3>
+        <p>Bachata footwork, accents and tap played inside Kizomba's slow pulse and connection. Playful, musical, and good for dancers crossing between scenes.</p>
+        <div class="meta"><span>Base <b>Bachata</b></span><span>Flow <b>Kizomba</b></span><span>Hold <b>open ↔ close</b></span></div>
+      </article>
+      <article class="style">
+        <span class="tag">Core</span>
+        <h3>Bachata</h3>
+        <p>The Dominican partner dance on the 8-count with a tap on 4 and 8. Fundamentals, sensual styling, and the musicality of the guitar.</p>
+        <div class="meta"><span>Count <b>1-2-3-tap</b></span></div>
+      </article>
+      <article class="style">
+        <span class="tag">Core</span>
+        <h3>Kizomba &amp; Fusion</h3>
+        <p>Angolan-rooted connection dance, plus Urban Kiz and fusion work: walking, saidas, pauses, and how to lead or follow with almost no visible movement.</p>
+        <div class="meta"><span>Feel <b>slow · grounded</b></span></div>
+      </article>
+      <div class="also">
+        <span class="mono">Also dance</span>
+        <span class="chip">Salsa</span>
+        <span class="chip">Zouk</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lessons" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono">03 / Lessons</span><h2>Learn with me while I'm in town</h2>
+      <p>I teach wherever I land. Tell me your city and dates, and I'll let you know when I'll be there or nearby.</p></div>
+    <div class="lessons">
+      <div class="lesson"><span class="mono">Private</span><h3>One-on-one</h3><p>Focused work on your dancing at your pace.</p><ul><li>All levels, lead or follow</li><li>Technique and connection fixes</li><li>Prep for festivals and socials</li></ul></div>
+      <div class="lesson"><span class="mono">Couples</span><h3>Two of you</h3><p>For partners, friends, or a first-dance song.</p><ul><li>Lead/follow clarity</li><li>Choreo or social-ready</li><li>Wedding first dance</li></ul></div>
+      <div class="lesson"><span class="mono">Group</span><h3>Workshops</h3><p>For studios, socials and dance communities.</p><ul><li>Bachazomba / Kizchata intensives</li><li>Musicality sessions</li><li>Pre-social classes</li></ul></div>
+      <div class="lesson"><span class="mono">Events</span><h3>Teach + DJ</h3><p>A class before the social, then I play the night.</p><ul><li>One booking, full evening</li><li>Bachata / Kiz / fusion sets</li><li>Festivals and pop-ups</li></ul></div>
+    </div>
+    <p class="note">Rates depend on format, group size and travel. Ask and I'll send a quote.</p>
+  </div>
+</section>
+
+<section id="dj" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono">04 / DJ</span><h2>Behind the decks</h2><p>DJ sets and music production for partner-dance floors.</p></div>
+    <div class="dj">
+      <div>
+        <p>After 200+ floors, I know what a room needs and when it needs it. I DJ sets built for partner dancers: tracks you can hear the count in, transitions that don't strand anyone mid-pattern, and an energy curve that keeps people dancing past midnight.</p>
+        <p>I play Bachata (traditional, modern and sensual), Kizomba, Urban Kiz, Tarraxinha, and fusion crossovers, plus Salsa and Zouk tandas for mixed rooms.</p>
+        <a class="cta" href="#book" style="display:inline-block;margin-top:8px">Book a DJ set</a>
+      </div>
+      <div class="setlist" aria-label="Example social set flow">
+        <div class="row head mono"><span>Time</span><span>Example set flow</span><span>Tempo</span></div>
+        <div class="row"><span class="t">21:00</span><span>Warm-up: classic Bachata</span><span class="bpm">mid</span></div>
+        <div class="row"><span class="t">21:45</span><span>Modern &amp; sensual Bachata</span><span class="bpm">mid → up</span></div>
+        <div class="row"><span class="t">22:30</span><span>Bachazomba crossover block</span><span class="bpm">down</span></div>
+        <div class="row"><span class="t">23:15</span><span>Kizomba &amp; Urban Kiz</span><span class="bpm">slow</span></div>
+        <div class="row"><span class="t">00:00</span><span>Peak: mixed fusion</span><span class="bpm">up</span></div>
+        <div class="row"><span class="t">00:45</span><span>Last dances</span><span class="bpm">slow</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="road" id="road">
+  <div class="wrap road-grid">
+    <div>
+      <div class="sec-head" style="grid-template-columns:1fr;margin-bottom:24px"><span class="mono">05 / On the road</span><h2>200+ floors and counting</h2></div>
+      <p>No home studio. My classroom moves with me. I've danced across the US and internationally, and every scene left something in my dancing.</p>
+      <p>If you run a studio, festival or social and want a guest instructor or DJ when I'm passing through, get in touch.</p>
+      <a class="ghost" href="#book" style="display:inline-block;margin-top:8px">Bring me to your scene</a>
+    </div>
+    <canvas id="route" aria-label="Illustration of a winding travel route connecting many venues"></canvas>
+  </div>
+</section>
+
+<section id="sway" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono">06 / Find events</span><h2>Find your next social</h2></div>
+    <div class="sway">
+      <div>
+        <p>Finding a good night out in a new city is half the work of dancing on the road. So I'm building <strong>Sway</strong>, a tool that helps dancers find Bachata, Kizomba, Salsa, Zouk and fusion events wherever they are.</p>
+        <p>It's the same thing I do before every stop on the road, turned into something anyone can use.</p>
+        <a class="cta" id="sway-cta" href="#sway" style="display:inline-block;margin-top:8px">Open Sway</a>
+      </div>
+      <div class="sway-card">
+        <div class="top"><span class="name">S<em>way</em></span><span class="badge" id="sway-badge">In development</span></div>
+        <ul>
+          <li><span>Find socials, classes and festivals near you</span></li>
+          <li><span>Filter by style: Bachata, Kizomba, fusion and more</span></li>
+          <li><span>Plan dance nights around a trip</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono">07 / Book</span><h2>Let's dance</h2>
+      <p>Fill this in and the page writes your booking message. Copy it, then send it by email or DM.</p></div>
+    <div class="book">
+      <div class="contact">
+        <div class="item"><span class="mono">Email</span><span id="email-text"></span></div>
+        <div class="item"><span class="mono">Instagram</span><a id="ig-link" href="#"></a></div>
+        <div class="item"><span class="mono">Based</span><span>Nowhere, everywhere. Currently on the road.</span></div>
+      </div>
+      <form id="book-form" novalidate>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" required autocomplete="name"></div>
+        <div class="field"><label for="f-city">City</label><input id="f-city" required placeholder="Where you dance"></div>
+        <div class="field"><label for="f-type">What you're after</label>
+          <select id="f-type">
+            <option>Private lesson</option><option>Couples lesson</option><option>Group workshop</option><option>DJ set</option><option>Teach + DJ event</option>
+          </select></div>
+        <div class="field"><label for="f-style">Style</label>
+          <select id="f-style">
+            <option>Bachazomba</option><option>Kizchata</option><option>Bachata</option><option>Kizomba / Urban Kiz</option><option>Salsa</option><option>Zouk</option><option>Not sure yet</option>
+          </select></div>
+        <div class="field"><label for="f-level">Level</label>
+          <select id="f-level"><option>Beginner</option><option>Improver</option><option>Intermediate</option><option>Advanced</option><option>Mixed group</option></select></div>
+        <div class="field"><label for="f-dates">Dates</label><input id="f-dates" placeholder="e.g. early March, weekends"></div>
+        <div class="field full"><label for="f-notes">Anything else</label><textarea id="f-notes" placeholder="Goals, group size, venue, music you love…"></textarea></div>
+        <button class="cta" type="submit">Write my booking message</button>
+        <div class="out" id="out" role="status">
+          <pre id="out-text"></pre>
+          <div class="row"><button class="cta" type="button" id="copy">Copy message</button><span class="msg" id="copy-msg"></span></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <span class="mono">© 2026 RoninRhythm</span>
-  <a class="mono" href="https://r0n1n9.github.io/roninsec/" style="text-decoration:none">A RoninSec brand</a>
+  <div class="wrap">
+    <a class="family" id="roninsec-link" href="#">
+      <span class="seal" style="width:34px;height:34px;font-size:16px">浪</span>
+      <span><small>A RoninSec brand · The Ronin network</small><strong>Back to RoninSec →</strong></span>
+    </a>
+    <span class="fine">© <span id="yr"></span> RoninRhythm · Dance · DJ · Instruction</span>
+  </div>
 </footer>
+
+<script>
+/* ---- Edit these three links ---- */
+const CONFIG = {
+  email: "roninsec42@proton.me",
+  instagram: "@roninsec",
+  roninsecUrl: "https://r0n1n9.github.io/roninsec/",
+  swayUrl: ""   // paste Sway's live link here when it's ready; leave empty to show "In development"
+};
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+document.getElementById("email-text").textContent = CONFIG.email;
+const ig = document.getElementById("ig-link");
+ig.textContent = CONFIG.instagram;
+ig.href = "https://instagram.com/" + CONFIG.instagram.replace("@","");
+document.getElementById("roninsec-link").href = CONFIG.roninsecUrl;
+const swayCta = document.getElementById("sway-cta"), swayBadge = document.getElementById("sway-badge");
+if (CONFIG.swayUrl) {
+  swayCta.href = CONFIG.swayUrl; swayCta.target = "_blank"; swayCta.rel = "noopener"; swayCta.textContent = "Open Sway ↗";
+  swayBadge.textContent = "Live"; swayBadge.classList.add("live");
+} else {
+  swayCta.textContent = "Coming soon"; swayCta.removeAttribute("href"); swayCta.setAttribute("aria-disabled","true");
+  swayCta.style.opacity = ".6"; swayCta.style.cursor = "default";
+}
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---- Hero: two rhythms on one line ---- */
+(function(){
+  const c = document.getElementById("pulse"), x = c.getContext("2d");
+  let w, h, dpr;
+  function size(){ dpr = devicePixelRatio||1; w = c.clientWidth; h = c.clientHeight; c.width = w*dpr; c.height = h*dpr; x.setTransform(dpr,0,0,dpr,0,0); }
+  size(); addEventListener("resize", size);
+  const css = getComputedStyle(document.documentElement);
+  const SEAL = css.getPropertyValue("--seal").trim(), BRASS = css.getPropertyValue("--brass").trim(), MIST = css.getPropertyValue("--mist").trim(), LINE = css.getPropertyValue("--line").trim();
+  function draw(t){
+    x.clearRect(0,0,w,h);
+    const mid = h/2, beats = 8, bw = w/beats;
+    // beat grid
+    x.font = "500 12px 'IBM Plex Mono', monospace"; x.textAlign = "center";
+    const labels = ["1","2","3","tap","5","6","7","tap"];
+    const play = (t/600) % beats;
+    for(let i=0;i<beats;i++){
+      const bx = bw*i + bw/2;
+      x.strokeStyle = LINE; x.lineWidth = 1;
+      x.beginPath(); x.moveTo(bw*i,8); x.lineTo(bw*i,h-8); x.stroke();
+      const active = Math.floor(play) === i;
+      x.fillStyle = active ? (i%4===3 ? SEAL : "#DAD6CA") : MIST;
+      x.fillText(labels[i], bx, h-6);
+    }
+    // kizomba: slow wide wave
+    x.strokeStyle = BRASS; x.lineWidth = 2; x.beginPath();
+    for(let px=0; px<=w; px+=3){
+      const y = mid - 6 + Math.sin(px/ (w/2) * Math.PI*2 - t/1400) * (h*0.22);
+      px ? x.lineTo(px,y) : x.moveTo(px,y);
+    }
+    x.stroke();
+    // bachata: sharper pulse with accent on each tap
+    x.strokeStyle = SEAL; x.lineWidth = 2; x.beginPath();
+    for(let px=0; px<=w; px+=2){
+      const b = px/bw, phase = b % 1, idx = Math.floor(b);
+      const amp = (idx%4===3 ? 0.34 : 0.14) * h;
+      const env = Math.exp(-phase*5);
+      const y = mid - 6 + Math.sin(phase*Math.PI*6 - t/200) * amp * env;
+      px ? x.lineTo(px,y) : x.moveTo(px,y);
+    }
+    x.stroke();
+    // playhead
+    const ph = play*bw;
+    x.fillStyle = SEAL; x.beginPath(); x.arc(ph, 10, 4, 0, Math.PI*2); x.fill();
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  reduce ? draw(1800) : requestAnimationFrame(draw);
+})();
+
+/* ---- Road: a winding route through many venues ---- */
+(function(){
+  const c = document.getElementById("route"), x = c.getContext("2d");
+  function render(){
+    const dpr = devicePixelRatio||1, w = c.clientWidth, h = c.clientHeight;
+    c.width = w*dpr; c.height = h*dpr; x.setTransform(dpr,0,0,dpr,0,0);
+    const css = getComputedStyle(document.documentElement);
+    const SEAL = css.getPropertyValue("--seal").trim(), BRASS = css.getPropertyValue("--brass").trim(), LINE = css.getPropertyValue("--line").trim(), PAPER = css.getPropertyValue("--paper").trim();
+    let s = 7; const rnd = () => (s = (s*16807) % 2147483647) / 2147483647;
+    const pts = [];
+    for(let i=0;i<200;i++){
+      const t = i/199;
+      pts.push([ 20 + t*(w-40) + (rnd()-.5)*60, h/2 + Math.sin(t*Math.PI*3.2)*h*0.28 + (rnd()-.5)*70 ]);
+    }
+    x.strokeStyle = LINE; x.lineWidth = 1; x.setLineDash([3,5]);
+    x.beginPath(); pts.forEach((p,i)=> i ? x.lineTo(p[0],p[1]) : x.moveTo(p[0],p[1])); x.stroke();
+    x.setLineDash([]);
+    pts.forEach((p,i)=>{
+      x.fillStyle = i%17===0 ? BRASS : PAPER;
+      x.globalAlpha = i%17===0 ? 1 : .55;
+      x.beginPath(); x.arc(p[0],p[1], i%17===0 ? 3.5 : 1.8, 0, Math.PI*2); x.fill();
+    });
+    x.globalAlpha = 1;
+    const last = pts[pts.length-1];
+    x.fillStyle = SEAL; x.beginPath(); x.arc(last[0],last[1],6,0,Math.PI*2); x.fill();
+    x.font = "500 12px 'IBM Plex Mono', monospace"; x.fillStyle = SEAL; x.textAlign = "right";
+    x.fillText("NEXT FLOOR →", last[0]-10, last[1]-12);
+    x.fillStyle = BRASS; x.textAlign = "left";
+    x.fillText("200+ VENUES", pts[0][0], 16);
+  }
+  render(); addEventListener("resize", render);
+  document.fonts && document.fonts.ready.then(render);
+})();
+
+/* ---- Booking message builder ---- */
+const form = document.getElementById("book-form");
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  if(!v("f-name") || !v("f-city")){ document.getElementById(!v("f-name") ? "f-name" : "f-city").focus(); return; }
+  const msg =
+`Hi RoninRhythm,
+
+I'd like to book: ${v("f-type")}
+Style: ${v("f-style")}
+Level: ${v("f-level")}
+City: ${v("f-city")}
+Dates: ${v("f-dates") || "flexible"}
+${v("f-notes") ? "\nNotes: " + v("f-notes") + "\n" : ""}
+Thanks,
+${v("f-name")}`;
+  document.getElementById("out-text").textContent = msg;
+  document.getElementById("copy-msg").textContent = "Send it to " + CONFIG.email + " or DM " + CONFIG.instagram + ".";
+  document.getElementById("out").classList.add("on");
+});
+document.getElementById("copy").addEventListener("click", async () => {
+  const m = document.getElementById("copy-msg");
+  try { await navigator.clipboard.writeText(document.getElementById("out-text").textContent); m.textContent = "Copied. Paste it into an email to " + CONFIG.email + " or a DM to " + CONFIG.instagram + "."; }
+  catch { m.textContent = "Couldn't copy automatically. Select the text above and copy it."; }
+});
+</script>
 </body>
 </html>
