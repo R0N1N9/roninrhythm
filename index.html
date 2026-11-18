@@ -66,12 +66,11 @@ nav ul a:hover{color:var(--paper)}
 .count canvas{display:block;width:100%;height:120px}
 .count-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;color:var(--mist)}
 .count-legend span b{color:var(--paper);font-weight:500}
+.count-legend .tagline{text-transform:none;letter-spacing:.14em;font-size:12px;color:var(--mist)}
+@media (max-width:640px){.count-legend{flex-direction:column;align-items:center;text-align:center}.count-legend .tagline{order:3}}
 
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.hero-grid h1{font-size:clamp(56px,8.5vw,128px)}
-.hero-photo{margin:0;position:relative}
-.hero-photo img{display:block;width:100%;height:auto;border-radius:6px;transform:rotate(1.5deg);box-shadow:-14px 14px 0 var(--seal)}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-photo{max-width:560px}}
+.about-photo{margin:12px 0 0}
+.about-photo img{display:block;width:100%;height:auto;border-radius:6px;transform:rotate(-1deg);box-shadow:12px 12px 0 var(--seal)}
 .about-side{display:grid;gap:28px;align-content:start}
 .photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .photo-pair figure{margin:0}
@@ -226,23 +225,17 @@ footer .fine{color:var(--mist);font-size:14px}
 <header class="hero" id="top">
   <div class="wrap">
     <p class="mono" style="color:var(--brass);margin:0 0 18px">Dance instruction · DJ &amp; music production · No fixed address</p>
-    <div class="hero-grid">
-    <div>
     <h1>Ronin<span class="r2">Rhythm<em>.</em></span></h1>
-    <p class="lede">I dance <b>Bachazomba</b> and <b>Kizchata</b>. That's my shorthand for Bachata, Kizomba and Fusion, and for the blend of the two that I'm building. I'm a masterless dancer working the road, and I teach in whatever city the next social takes me.</p>
+    <p class="lede">I dance <b>Bachazomba</b> and <b>Kizchata</b>. That's my shorthand for Bachata, Kizomba and Fusion, and for the blend of the two that I'm building.</p>
     <div class="hero-row">
       <a class="cta" href="#book">Book a lesson in your city</a>
       <a class="ghost" href="#dj">Hire me to DJ</a>
-    </div>
-    </div>
-    <figure class="hero-photo">
-      <img src="images/dancing-hero.jpg" width="1024" height="769" alt="RoninRhythm dancing close-embrace with a partner on a social dance floor">
-    </figure>
     </div>
     <div class="count" aria-hidden="true">
       <canvas id="pulse"></canvas>
       <div class="count-legend mono">
         <span><b>Kizomba</b> · slow, grounded pulse</span>
+        <span class="tagline">a lethal tempo</span>
         <span><b>Bachata</b> · 1 2 3 <b>tap</b> 5 6 7 <b>tap</b></span>
       </div>
     </div>
@@ -265,8 +258,9 @@ footer .fine{color:var(--mist);font-size:14px}
       <div>
         <p>I'm a social dancer and DJ, and I live on the road. I've danced at more than 200 venues across the US and abroad.</p>
         <p>My main styles are Bachata, Kizomba and Fusion. Bachazomba and Kizchata are my names for the blend of Bachata and Kizomba that I'm developing. I also dance some Salsa and Zouk.</p>
+        <p>I'm an avid switch dancer, at home in both the lead and the follow role. Dancing both sides shapes how I teach: I can explain what each role feels from the inside.</p>
         <p>Since I'm always traveling, I teach wherever I am: private and couples lessons, workshops for local scenes, and a class before the social when I'm DJing the night.</p>
-        <p>RoninRhythm is part of <a class="inline" id="roninsec-about" href="https://r0n1n9.github.io/roninsec/#past">RoninSec</a>.</p>
+        <figure class="about-photo"><img src="images/dancing-hero.jpg" width="1024" height="769" loading="lazy" alt="RoninRhythm dancing close-embrace with a partner on a social dance floor"></figure>
       </div>
       <div class="about-side">
       <div class="photo-pair">
@@ -279,7 +273,7 @@ footer .fine{color:var(--mist);font-size:14px}
         <ol>
           <li><span><strong>Connection first.</strong> Frame and embrace before patterns.</span></li>
           <li><span><strong>Musicality.</strong> Dancing to what's actually in the track.</span></li>
-          <li><span><strong>Both roles.</strong> Lead and follow technique for everyone.</span></li>
+          <li><span><strong>Both roles.</strong> Taught by a switch dancer who leads and follows.</span></li>
           <li><span><strong>Floorcraft and consent.</strong> How to share a social floor well.</span></li>
         </ol>
       </div>
@@ -291,7 +285,7 @@ footer .fine{color:var(--mist);font-size:14px}
 <section id="styles" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head"><span class="mono">02 / Styles</span><h2>What I dance</h2>
-      <p>Three distinct partner dances are my home: Bachata, Kizomba and Fusion. I also have working experience in Salsa and Zouk.</p></div>
+      <p>Three distinct partner dances are my home: Bachata, Kizomba and Fusion. I dance all of them as a switch, leading and following. I also have working experience in Salsa and Zouk.</p></div>
     <div class="styles three">
       <article class="style">
         <span class="tag">Core</span>
@@ -302,14 +296,14 @@ footer .fine{color:var(--mist);font-size:14px}
       <article class="style">
         <span class="tag">Core</span>
         <h3>Kizomba</h3>
-        <p>The Angolan-rooted connection dance: walking, saidas, pauses, and leading or following with almost no visible movement.</p>
-        <div class="meta"><span>Feel <b>slow · grounded</b></span></div>
+        <p>Kizomba fusion, blending traditional Kizomba and Urban Kiz: walking, saidas and pauses, with leads and follows carried through the embrace.</p>
+        <div class="meta"><span>Blend <b>traditional + Urban Kiz</b></span></div>
       </article>
       <article class="style">
         <span class="tag">Core</span>
         <h3>Fusion</h3>
-        <p>Urban Kiz and fusion partner work: open and closed holds, shapes and isolations, and dancing to whatever the music asks for.</p>
-        <div class="meta"><span>Hold <b>open ↔ close</b></span></div>
+        <p>Fusion partner dance in general, including the blues fusion community: mixing styles in open and closed holds, and dancing to whatever the music asks for.</p>
+        <div class="meta"><span>Scene <b>blues fusion</b></span><span>Hold <b>open ↔ close</b></span></div>
       </article>
       <article class="style primary blend">
         <span class="tag">My blend · in the making</span>
@@ -331,7 +325,7 @@ footer .fine{color:var(--mist);font-size:14px}
     <div class="sec-head"><span class="mono">03 / Lessons</span><h2>Learn with me while I'm in town</h2>
       <p>I teach wherever I land. Tell me your city and dates, and I'll let you know when I'll be there or nearby.</p></div>
     <div class="lessons">
-      <div class="lesson"><span class="mono">Private</span><h3>One-on-one</h3><p>Focused work on your dancing at your pace.</p><ul><li>All levels, lead or follow</li><li>Technique and connection fixes</li><li>Prep for festivals and socials</li></ul></div>
+      <div class="lesson"><span class="mono">Private</span><h3>One-on-one</h3><p>Focused work on your dancing at your pace.</p><ul><li>All levels, lead, follow or switch</li><li>Technique and connection fixes</li><li>Prep for festivals and socials</li></ul></div>
       <div class="lesson"><span class="mono">Couples</span><h3>Two of you</h3><p>For partners, friends, or a first-dance song.</p><ul><li>Lead/follow clarity</li><li>Choreo or social-ready</li><li>Wedding first dance</li></ul></div>
       <div class="lesson"><span class="mono">Group</span><h3>Workshops</h3><p>For studios, socials and dance communities.</p><ul><li>Bachata, Kizomba &amp; Fusion</li><li>Bachazomba / Kizchata intensives</li><li>Musicality sessions</li><li>Pre-social classes</li></ul></div>
       <div class="lesson"><span class="mono">Events</span><h3>Teach + DJ</h3><p>A class before the social, then I play the night.</p><ul><li>One booking, full evening</li><li>Bachata / Kiz / fusion sets</li><li>Festivals and pop-ups</li></ul></div>
@@ -415,7 +409,7 @@ footer .fine{color:var(--mist);font-size:14px}
           </select></div>
         <div class="field"><label for="f-style">Style</label>
           <select id="f-style">
-            <option>Bachata</option><option>Kizomba</option><option>Fusion / Urban Kiz</option><option>Bachazomba / Kizchata</option><option>Salsa</option><option>Zouk</option><option>Not sure yet</option>
+            <option>Bachata</option><option>Kizomba / Urban Kiz</option><option>Fusion / Blues fusion</option><option>Bachazomba / Kizchata</option><option>Salsa</option><option>Zouk</option><option>Not sure yet</option>
           </select></div>
         <div class="field"><label for="f-level">Level</label>
           <select id="f-level"><option>Beginner</option><option>Improver</option><option>Intermediate</option><option>Advanced</option><option>Mixed group</option></select></div>
@@ -466,7 +460,6 @@ ig.textContent = CONFIG.instagram;
 ig.href = "https://instagram.com/" + CONFIG.instagram.replace("@","");
 document.getElementById("roninsec-link").href = CONFIG.roninsecUrl;
 document.getElementById("roninsec-nav").href = CONFIG.roninsecUrl;
-document.getElementById("roninsec-about").href = CONFIG.roninsecUrl + "#past";
 const swayCta = document.getElementById("sway-cta"), swayBadge = document.getElementById("sway-badge");
 if (CONFIG.swayUrl) {
   swayCta.href = CONFIG.swayUrl; swayCta.target = "_blank"; swayCta.rel = "noopener"; swayCta.textContent = "Open Sway ↗";
