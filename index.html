@@ -149,6 +149,11 @@ textarea{min-height:120px;resize:vertical}
 form .cta{grid-column:1/-1;justify-self:start;padding:14px 26px;font-size:16px}
 .out{grid-column:1/-1;display:none;border:1px solid var(--brass);border-radius:6px;padding:18px;background:var(--ink)}
 .out.on{display:block}
+.out-head{margin:0 0 12px;font-weight:600}
+.out.sent{border-color:var(--seal)}
+.form-err{grid-column:1/-1;margin:0;color:var(--seal);font-size:15px}
+.form-err:empty{display:none}
+button.ghost{background:none;cursor:pointer;font:500 15px var(--body)}
 .out pre{white-space:pre-wrap;font:14px/1.55 var(--mono);margin:0 0 14px;color:var(--paper)}
 .out .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .out .msg{color:var(--mist);font-size:14px}
@@ -359,7 +364,7 @@ footer .fine{color:var(--mist);font-size:14px}
 <section id="book">
   <div class="wrap">
     <div class="sec-head"><span class="mono">07 / Book</span><h2>Let's dance</h2>
-      <p>Fill this in and the page writes your booking message. Copy it, then send it by email or DM.</p></div>
+      <p>Tell me what you're after and where, and I'll reply by email.</p></div>
     <div class="book">
       <div class="contact">
         <div class="item"><span class="mono">Email</span><span id="email-text"></span></div>
@@ -368,6 +373,7 @@ footer .fine{color:var(--mist);font-size:14px}
       </div>
       <form id="book-form" novalidate>
         <div class="field"><label for="f-name">Your name</label><input id="f-name" required autocomplete="name"></div>
+        <div class="field"><label for="f-email">Your email</label><input id="f-email" type="email" required autocomplete="email" placeholder="So I can reply"></div>
         <div class="field"><label for="f-city">City</label><input id="f-city" required placeholder="Where you dance"></div>
         <div class="field"><label for="f-type">What you're after</label>
           <select id="f-type">
@@ -379,12 +385,15 @@ footer .fine{color:var(--mist);font-size:14px}
           </select></div>
         <div class="field"><label for="f-level">Level</label>
           <select id="f-level"><option>Beginner</option><option>Improver</option><option>Intermediate</option><option>Advanced</option><option>Mixed group</option></select></div>
-        <div class="field"><label for="f-dates">Dates</label><input id="f-dates" placeholder="e.g. early March, weekends"></div>
+        <div class="field full"><label for="f-dates">Dates</label><input id="f-dates" placeholder="e.g. early March, weekends"></div>
         <div class="field full"><label for="f-notes">Anything else</label><textarea id="f-notes" placeholder="Goals, group size, venue, music you love…"></textarea></div>
-        <button class="cta" type="submit">Write my booking message</button>
+        <input type="checkbox" name="botcheck" id="f-bot" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+        <button class="cta" type="submit" id="send">Send booking request</button>
+        <p class="form-err" id="form-err" role="alert"></p>
         <div class="out" id="out" role="status">
+          <p class="out-head" id="out-head"></p>
           <pre id="out-text"></pre>
-          <div class="row"><button class="cta" type="button" id="copy">Copy message</button><span class="msg" id="copy-msg"></span></div>
+          <div class="row" id="out-actions"><a class="cta" id="mailto">Open in email</a><button class="ghost" type="button" id="copy">Copy message</button><span class="msg" id="copy-msg"></span></div>
         </div>
       </form>
     </div>
@@ -407,7 +416,13 @@ const CONFIG = {
   email: "roninsec42@proton.me",
   instagram: "@roninsec",
   roninsecUrl: "https://r0n1n9.github.io/roninsec/",
-  swayUrl: ""   // paste Sway's live link here when it's ready; leave empty to show "In development"
+  swayUrl: "",   // paste Sway's live link here when it's ready; leave empty to show "In development"
+  // Direct-to-inbox booking form. Pick ONE service and paste its key:
+  //   Web3Forms: formService "web3forms", formKey = your Access Key
+  //   Formspree: formService "formspree", formKey = your form ID (the part after /f/)
+  // Leave formKey empty and the form falls back to "Open in email" + "Copy message".
+  formService: "web3forms",
+  formKey: ""
 };
 
 document.getElementById("yr").textContent = new Date().getFullYear();
@@ -509,14 +524,12 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.fonts && document.fonts.ready.then(render);
 })();
 
-/* ---- Booking message builder ---- */
+/* ---- Booking form ---- */
 const form = document.getElementById("book-form");
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const v = id => document.getElementById(id).value.trim();
-  if(!v("f-name") || !v("f-city")){ document.getElementById(!v("f-name") ? "f-name" : "f-city").focus(); return; }
-  const msg =
-`Hi RoninRhythm,
+const $ = id => document.getElementById(id);
+const v = id => $(id).value.trim();
+function buildMessage(){
+  return `Hi RoninRhythm,
 
 I'd like to book: ${v("f-type")}
 Style: ${v("f-style")}
@@ -525,14 +538,61 @@ City: ${v("f-city")}
 Dates: ${v("f-dates") || "flexible"}
 ${v("f-notes") ? "\nNotes: " + v("f-notes") + "\n" : ""}
 Thanks,
-${v("f-name")}`;
-  document.getElementById("out-text").textContent = msg;
-  document.getElementById("copy-msg").textContent = "Send it to " + CONFIG.email + " or DM " + CONFIG.instagram + ".";
-  document.getElementById("out").classList.add("on");
+${v("f-name")}
+${v("f-email")}`;
+}
+function subject(){ return `Booking request: ${v("f-type")} in ${v("f-city")}`; }
+function showFallback(head){
+  const msg = buildMessage();
+  $("out-head").textContent = head;
+  $("out-text").textContent = msg;
+  $("mailto").href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent(subject()) + "&body=" + encodeURIComponent(msg);
+  $("out-actions").style.display = "";
+  $("copy-msg").textContent = "No email app? Copy it and send to " + CONFIG.email + " or DM " + CONFIG.instagram + ".";
+  $("out").classList.remove("sent"); $("out").classList.add("on");
+}
+async function sendDirect(){
+  const msg = buildMessage();
+  if (CONFIG.formService === "formspree") {
+    const r = await fetch("https://formspree.io/f/" + CONFIG.formKey, {
+      method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ name: v("f-name"), email: v("f-email"), _subject: subject(), message: msg })
+    });
+    if (!r.ok) throw new Error("formspree " + r.status);
+  } else {
+    const r = await fetch("https://api.web3forms.com/submit", {
+      method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ access_key: CONFIG.formKey, subject: subject(), from_name: "RoninRhythm booking", name: v("f-name"), email: v("f-email"), replyto: v("f-email"), message: msg, botcheck: $("f-bot").checked })
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || j.success === false) throw new Error("web3forms " + r.status);
+  }
+}
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  $("form-err").textContent = "";
+  for (const id of ["f-name","f-email","f-city"]) {
+    if (!v(id)) { $("form-err").textContent = "Please add your " + $(id).labels[0].textContent.replace(/^Your /,"").toLowerCase() + "."; $(id).focus(); return; }
+  }
+  if (!$("f-email").checkValidity()) { $("form-err").textContent = "That email address doesn't look right. Check it and try again."; $("f-email").focus(); return; }
+  if (!CONFIG.formKey) { showFallback("Your booking message is ready. Send it from your email app:"); return; }
+  const btn = $("send"); btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    await sendDirect();
+    $("out-head").textContent = "Sent. Thanks, " + v("f-name") + "! I'll reply to " + v("f-email") + ".";
+    $("out-text").textContent = buildMessage();
+    $("out-actions").style.display = "none";
+    $("out").classList.add("on","sent");
+    form.querySelectorAll("input:not([type=checkbox]),textarea").forEach(el => el.value = "");
+  } catch (err) {
+    showFallback("The form couldn't send just now. Send it from your email app instead:");
+  } finally {
+    btn.disabled = false; btn.textContent = "Send booking request";
+  }
 });
-document.getElementById("copy").addEventListener("click", async () => {
-  const m = document.getElementById("copy-msg");
-  try { await navigator.clipboard.writeText(document.getElementById("out-text").textContent); m.textContent = "Copied. Paste it into an email to " + CONFIG.email + " or a DM to " + CONFIG.instagram + "."; }
+$("copy").addEventListener("click", async () => {
+  const m = $("copy-msg");
+  try { await navigator.clipboard.writeText($("out-text").textContent); m.textContent = "Copied. Paste it into an email to " + CONFIG.email + " or a DM to " + CONFIG.instagram + "."; }
   catch { m.textContent = "Couldn't copy automatically. Select the text above and copy it."; }
 });
 </script>
