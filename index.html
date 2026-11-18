@@ -67,6 +67,18 @@ nav ul a:hover{color:var(--paper)}
 .count-legend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;color:var(--mist)}
 .count-legend span b{color:var(--paper);font-weight:500}
 
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero-grid h1{font-size:clamp(56px,8.5vw,128px)}
+.hero-photo{margin:0;position:relative}
+.hero-photo img{display:block;width:100%;height:auto;border-radius:6px;transform:rotate(1.5deg);box-shadow:-14px 14px 0 var(--seal)}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-photo{max-width:560px}}
+.about-side{display:grid;gap:28px;align-content:start}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.photo-pair figure{margin:0}
+.photo-pair figure:nth-child(2){margin-top:40px}
+.photo-pair img{display:block;width:100%;height:auto;border-radius:6px}
+.credit{grid-column:1/-1;color:var(--mist);font-size:11px;margin-top:-4px}
+
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--line)}
 .stat{padding:28px 20px;border-right:1px solid var(--line)}
@@ -214,11 +226,18 @@ footer .fine{color:var(--mist);font-size:14px}
 <header class="hero" id="top">
   <div class="wrap">
     <p class="mono" style="color:var(--brass);margin:0 0 18px">Dance instruction · DJ &amp; music production · No fixed address</p>
+    <div class="hero-grid">
+    <div>
     <h1>Ronin<span class="r2">Rhythm<em>.</em></span></h1>
     <p class="lede">I dance <b>Bachazomba</b> and <b>Kizchata</b>. That's my shorthand for Bachata, Kizomba and Fusion, and for the blend of the two that I'm building. I'm a masterless dancer working the road, and I teach in whatever city the next social takes me.</p>
     <div class="hero-row">
       <a class="cta" href="#book">Book a lesson in your city</a>
       <a class="ghost" href="#dj">Hire me to DJ</a>
+    </div>
+    </div>
+    <figure class="hero-photo">
+      <img src="images/dancing-hero.jpg" width="1024" height="769" alt="RoninRhythm dancing close-embrace with a partner on a social dance floor">
+    </figure>
     </div>
     <div class="count" aria-hidden="true">
       <canvas id="pulse"></canvas>
@@ -249,6 +268,12 @@ footer .fine{color:var(--mist);font-size:14px}
         <p>Every floor taught me something. Leads and follows dance differently in every city, and that range shows up in how I teach. You'll learn technique that travels, so you can walk into any social anywhere and connect with whoever's in front of you.</p>
         <p>RoninRhythm is part of <a class="inline" id="roninsec-about" href="https://r0n1n9.github.io/roninsec/#past">RoninSec</a>, under its Inner Terrain pillar, where dance is one of the practices that keep body and mind steady.</p>
       </div>
+      <div class="about-side">
+      <div class="photo-pair">
+        <figure><img src="images/dancing-connection.jpg" width="1024" height="1364" loading="lazy" alt="RoninRhythm leading a partner in closed hold at a social"></figure>
+        <figure><img src="images/dancing-embrace.jpg" width="1024" height="1364" loading="lazy" alt="RoninRhythm dancing in an embrace with a partner, seen from behind"></figure>
+        <figcaption class="mono credit">Photos · LX Supreme Media · The Douceur Experience</figcaption>
+      </div>
       <div class="code">
         <h3>What I teach by</h3>
         <ol>
@@ -257,6 +282,7 @@ footer .fine{color:var(--mist);font-size:14px}
           <li><span><strong>Leads and follows both.</strong> Clear signals, real listening, no forcing.</span></li>
           <li><span><strong>Floorcraft and respect.</strong> Social dancing is shared space. Consent and comfort always.</span></li>
         </ol>
+      </div>
       </div>
     </div>
   </div>
