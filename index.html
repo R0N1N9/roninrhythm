@@ -29,6 +29,8 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
 a{color:var(--paper)}
+a.inline{color:var(--brass);text-decoration:none;border-bottom:1px solid currentColor}
+a.inline:hover{color:var(--seal)}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.02}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
@@ -199,6 +201,7 @@ footer .fine{color:var(--mist);font-size:14px}
       <li><a href="#dj">DJ</a></li>
       <li><a href="#road">On the road</a></li>
       <li><a href="#sway">Find events</a></li>
+      <li><a href="https://r0n1n9.github.io/roninsec/" id="roninsec-nav">RoninSec</a></li>
     </ul>
     <a class="cta" href="#book">Book a lesson</a>
   </div>
@@ -240,6 +243,7 @@ footer .fine{color:var(--mist);font-size:14px}
         <p>A ronin had no lord and no fixed home, only a discipline carried from place to place. That's how I dance.</p>
         <p>I'm a nomad. I live on the road across the United States and abroad, and I've danced at more than 200 venues: studio socials, festival ballrooms, rooftop pop-ups, and the small weeknight bachata nights that every scene depends on.</p>
         <p>Every floor taught me something. Leads and follows dance differently in every city, and that range shows up in how I teach. You'll learn technique that travels, so you can walk into any social anywhere and connect with whoever's in front of you.</p>
+        <p>RoninRhythm is part of <a class="inline" id="roninsec-about" href="https://r0n1n9.github.io/roninsec/#past">RoninSec</a>, under its Inner Terrain pillar, where dance is one of the practices that keep body and mind steady.</p>
       </div>
       <div class="code">
         <h3>What I teach by</h3>
@@ -431,6 +435,8 @@ const ig = document.getElementById("ig-link");
 ig.textContent = CONFIG.instagram;
 ig.href = "https://instagram.com/" + CONFIG.instagram.replace("@","");
 document.getElementById("roninsec-link").href = CONFIG.roninsecUrl;
+document.getElementById("roninsec-nav").href = CONFIG.roninsecUrl;
+document.getElementById("roninsec-about").href = CONFIG.roninsecUrl + "#past";
 const swayCta = document.getElementById("sway-cta"), swayBadge = document.getElementById("sway-badge");
 if (CONFIG.swayUrl) {
   swayCta.href = CONFIG.swayUrl; swayCta.target = "_blank"; swayCta.rel = "noopener"; swayCta.textContent = "Open Sway ↗";
