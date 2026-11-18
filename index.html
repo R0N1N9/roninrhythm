@@ -4,24 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RoninRhythm</title>
-<meta name="description" content="Ronin Rhythm — nomadic partner dancer and DJ. Bachazomba, Kizchata, Bachata, Kizomba and fusion lessons in whatever city I'm in next.">
+<meta name="description" content="RoninRhythm: nomadic partner dancer and DJ. Bachata, Kizomba and Fusion lessons, plus Bachazomba and Kizchata, in whatever city I'm in next. A RoninSec brand.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Zen+Antique&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout idea: a night social floor on the RoninSec matte black. Shares the RoninSec palette and type;
-   the 8-count runs through the page as structure. Red is the ronin's seal, brass the RoninRhythm accent. */
+/* Layout idea: a night social floor. One ink-dark stage, a vermilion "seal" accent (the ronin's mark),
+   brass for secondary detail, and an 8-count running through the page as structure. */
 :root{
-  --ink:#121412;
-  --night:#1C1F1E;
-  --line:#2D3230;
-  --paper:#DAD6CA;
-  --mist:#9A978A;
-  --seal:#B03A36;
-  --brass:#B49F80;
-  --display:"Zen Antique","Hiragino Mincho ProN",Georgia,serif;
-  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ink:#12101f;
+  --night:#1d1932;
+  --line:#2f2a4a;
+  --paper:#efe8dc;
+  --mist:#9c95b5;
+  --seal:#e0482f;
+  --brass:#cfae68;
+  --display:"Syne","Arial Black",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -30,27 +30,27 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
 a{color:var(--paper)}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.02}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.02}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
 .mono{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
 
 /* nav */
 nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
-.brand{font-family:var(--display);font-weight:400;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:10px}
-.seal{width:22px;height:22px;background:var(--seal);border-radius:3px;display:grid;place-items:center;font-size:12px;color:#f3efe6;font-weight:600;transform:rotate(-4deg)}
+.brand{font-family:var(--display);font-weight:800;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.seal{width:22px;height:22px;background:var(--seal);border-radius:3px;display:grid;place-items:center;font-size:12px;color:var(--ink);font-weight:800;transform:rotate(-4deg)}
 nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
 nav ul a{text-decoration:none;color:var(--mist);font-size:15px}
 nav ul a:hover{color:var(--paper)}
-.cta{background:var(--seal);color:#f3efe6;border:0;font:600 15px var(--body);padding:10px 18px;border-radius:999px;text-decoration:none;cursor:pointer}
-.cta:hover{background:#c4443f}
+.cta{background:var(--seal);color:var(--ink);border:0;font:600 15px var(--body);padding:10px 18px;border-radius:999px;text-decoration:none;cursor:pointer}
+.cta:hover{background:#ec5b42}
 @media (max-width:760px){nav ul{display:none}}
 
 /* hero */
 .hero{position:relative;padding:72px 0 40px;overflow:hidden}
-.hero h1{font-size:clamp(56px,11vw,140px);letter-spacing:.005em}
-.hero h1 em{font-style:normal;color:var(--brass)}
-.hero h1 .dot{color:var(--seal)}
+.hero h1{font-size:clamp(56px,11vw,148px);font-weight:800;letter-spacing:-.03em}
+.hero h1 .r2{color:transparent;-webkit-text-stroke:1.5px var(--paper);display:block}
+.hero h1 .r2 em{font-style:normal;color:var(--seal);-webkit-text-stroke:0}
 .hero .lede{max-width:560px;font-size:20px;color:var(--paper);margin:28px 0 0}
 .hero .lede b{color:var(--brass);font-weight:600}
 .hero-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
@@ -65,7 +65,7 @@ nav ul a:hover{color:var(--paper)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--line)}
 .stat{padding:28px 20px;border-right:1px solid var(--line)}
 .stat:last-child{border-right:0}
-.stat .n{font-family:var(--display);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
 .stat .n sup{color:var(--seal);font-size:24px}
 .stat p{margin:8px 0 0;color:var(--mist);font-size:15px}
 @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
@@ -74,7 +74,7 @@ nav ul a:hover{color:var(--paper)}
 section{padding:96px 0}
 .sec-head{display:grid;grid-template-columns:120px 1fr;gap:24px;margin-bottom:48px;align-items:baseline}
 .sec-head .mono{color:var(--seal)}
-.sec-head h2{font-size:clamp(36px,5vw,58px)}
+.sec-head h2{font-size:clamp(36px,5vw,60px);font-weight:700}
 .sec-head p{grid-column:2;max-width:620px;color:var(--mist);margin:16px 0 0}
 @media (max-width:640px){.sec-head{grid-template-columns:1fr}.sec-head p{grid-column:1}}
 
@@ -91,25 +91,29 @@ section{padding:96px 0}
 
 /* styles */
 .styles{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.styles.three{grid-template-columns:repeat(3,1fr)}
+.style.blend{grid-column:1/-1}
+.style.blend p{max-width:72ch}
 .style{border:1px solid var(--line);border-radius:6px;padding:28px;background:var(--night);display:flex;flex-direction:column;gap:12px}
 .style.primary{border-color:color-mix(in srgb,var(--seal) 55%,var(--line))}
 .style .tag{align-self:flex-start;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--mist)}
-.style.primary .tag{background:var(--seal);border-color:var(--seal);color:#f3efe6}
-.style h3{font-size:32px}
+.style.primary .tag{background:var(--seal);border-color:var(--seal);color:var(--ink)}
+.style h3{font-size:34px;font-weight:800}
 .style p{margin:0;color:var(--paper);opacity:.88}
 .style .meta{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);display:flex;flex-wrap:wrap;gap:16px;color:var(--mist);font-family:var(--mono);font-size:13px}
 .style .meta b{color:var(--brass);font-weight:500}
 .also{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:20px 0 0}
 .also .mono{color:var(--mist);margin-right:6px}
 .chip{border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:15px}
-@media (max-width:760px){.styles{grid-template-columns:1fr}}
+@media (max-width:960px){.styles.three{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.styles,.styles.three{grid-template-columns:1fr}}
 
 /* lessons */
 .lessons{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
 .lesson{padding:28px 22px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .lesson:last-child{border-right:0}
 .lesson .mono{color:var(--brass)}
-.lesson h3{font-size:24px}
+.lesson h3{font-size:24px;font-weight:700}
 .lesson p{margin:0;color:var(--mist);font-size:16px}
 .lesson ul{margin:0;padding-left:18px;font-size:15px;color:var(--paper)}
 @media (max-width:960px){.lessons{grid-template-columns:repeat(2,1fr)}.lesson:nth-child(2){border-right:0}.lesson:nth-child(-n+2){border-bottom:1px solid var(--line)}}
@@ -159,9 +163,9 @@ form .cta{grid-column:1/-1;justify-self:start;padding:14px 26px;font-size:16px}
 .sway p{max-width:58ch;margin:0 0 18px}
 .sway-card{border:1px solid var(--line);border-radius:6px;background:var(--night);padding:28px;display:grid;gap:16px}
 .sway-card .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.sway-card .name{font-family:var(--display);font-size:40px;line-height:1}
+.sway-card .name{font-family:var(--display);font-weight:800;font-size:40px;line-height:1}
 .sway-card .name em{font-style:normal;color:var(--brass)}
-.badge{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1px solid var(--seal);color:var(--seal)}
+.badge{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--seal);color:var(--seal)}
 .badge.live{border-color:var(--brass);color:var(--brass)}
 .sway-card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
 .sway-card li{display:grid;grid-template-columns:22px 1fr;gap:8px;color:var(--paper)}
@@ -174,7 +178,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;
 .family{display:flex;align-items:center;gap:14px;text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:14px 18px}
 .family:hover{border-color:var(--brass)}
 .family small{display:block;color:var(--mist);font-size:13px}
-.family strong{font-family:var(--display);font-size:20px;font-weight:400}
+.family strong{font-family:var(--display);font-size:18px}
 footer .fine{color:var(--mist);font-size:14px}
 </style>
 </head>
@@ -198,8 +202,8 @@ footer .fine{color:var(--mist);font-size:14px}
 <header class="hero" id="top">
   <div class="wrap">
     <p class="mono" style="color:var(--brass);margin:0 0 18px">Dance instruction · DJ &amp; music production · No fixed address</p>
-    <h1>Ronin<em>Rhythm</em><span class="dot">.</span></h1>
-    <p class="lede">A masterless dancer working the road. I teach <b>Bachazomba</b> and <b>Kizchata</b>, the fusions where Bachata's music meets Kizomba's connection, in whatever city the next social takes me.</p>
+    <h1>Ronin<span class="r2">Rhythm<em>.</em></span></h1>
+    <p class="lede">I dance <b>Bachazomba</b> and <b>Kizchata</b>. That's my shorthand for Bachata, Kizomba and Fusion, and for the blend of the two that I'm building. I'm a masterless dancer working the road, and I teach in whatever city the next social takes me.</p>
     <div class="hero-row">
       <a class="cta" href="#book">Book a lesson in your city</a>
       <a class="ghost" href="#dj">Hire me to DJ</a>
@@ -218,7 +222,7 @@ footer .fine{color:var(--mist);font-size:14px}
   <div class="stats">
     <div class="stat"><div class="n">200<sup>+</sup></div><p>dance venues danced in</p></div>
     <div class="stat"><div class="n">US<sup>+</sup></div><p>coast to coast, plus international floors</p></div>
-    <div class="stat"><div class="n">2</div><p>signature fusions: Bachazomba &amp; Kizchata</p></div>
+    <div class="stat"><div class="n">3</div><p>core styles: Bachata, Kizomba &amp; Fusion</p></div>
     <div class="stat"><div class="n">1:1</div><p>private, couples and group lessons</p></div>
   </div>
 </div>
@@ -248,20 +252,8 @@ footer .fine{color:var(--mist);font-size:14px}
 <section id="styles" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head"><span class="mono">02 / Styles</span><h2>What I dance</h2>
-      <p>My specialty is the space between Bachata and Kizomba. I also dance the source styles on their own, with working experience in Salsa and Zouk.</p></div>
-    <div class="styles">
-      <article class="style primary">
-        <span class="tag">Signature</span>
-        <h3>Bachazomba</h3>
-        <p>Kizomba's close embrace, weight transfer and walking flow carried onto Bachata music. Smooth, grounded and very connected.</p>
-        <div class="meta"><span>Music <b>Bachata</b></span><span>Feel <b>Kizomba</b></span><span>Hold <b>close</b></span></div>
-      </article>
-      <article class="style primary">
-        <span class="tag">Signature</span>
-        <h3>Kizchata</h3>
-        <p>Bachata footwork, accents and tap played inside Kizomba's slow pulse and connection. Playful, musical, and good for dancers crossing between scenes.</p>
-        <div class="meta"><span>Base <b>Bachata</b></span><span>Flow <b>Kizomba</b></span><span>Hold <b>open ↔ close</b></span></div>
-      </article>
+      <p>Three distinct partner dances are my home: Bachata, Kizomba and Fusion. I also have working experience in Salsa and Zouk.</p></div>
+    <div class="styles three">
       <article class="style">
         <span class="tag">Core</span>
         <h3>Bachata</h3>
@@ -270,9 +262,21 @@ footer .fine{color:var(--mist);font-size:14px}
       </article>
       <article class="style">
         <span class="tag">Core</span>
-        <h3>Kizomba &amp; Fusion</h3>
-        <p>Angolan-rooted connection dance, plus Urban Kiz and fusion work: walking, saidas, pauses, and how to lead or follow with almost no visible movement.</p>
+        <h3>Kizomba</h3>
+        <p>The Angolan-rooted connection dance: walking, saidas, pauses, and leading or following with almost no visible movement.</p>
         <div class="meta"><span>Feel <b>slow · grounded</b></span></div>
+      </article>
+      <article class="style">
+        <span class="tag">Core</span>
+        <h3>Fusion</h3>
+        <p>Urban Kiz and fusion partner work: open and closed holds, shapes and isolations, and dancing to whatever the music asks for.</p>
+        <div class="meta"><span>Hold <b>open ↔ close</b></span></div>
+      </article>
+      <article class="style primary blend">
+        <span class="tag">My blend · in the making</span>
+        <h3>Bachazomba &amp; Kizchata</h3>
+        <p>This is the thing I'm building. It's my own blend of Bachata and Kizomba. Bachazomba carries Kizomba's embrace, weight transfer and walking flow onto Bachata music. Kizchata brings Bachata's footwork, accents and tap inside Kizomba's slow pulse. Come try it in a class, or bring it to your scene as a workshop.</p>
+        <div class="meta"><span>Bachata <b>+</b> Kizomba</span><span>Status <b>growing</b></span></div>
       </article>
       <div class="also">
         <span class="mono">Also dance</span>
@@ -290,7 +294,7 @@ footer .fine{color:var(--mist);font-size:14px}
     <div class="lessons">
       <div class="lesson"><span class="mono">Private</span><h3>One-on-one</h3><p>Focused work on your dancing at your pace.</p><ul><li>All levels, lead or follow</li><li>Technique and connection fixes</li><li>Prep for festivals and socials</li></ul></div>
       <div class="lesson"><span class="mono">Couples</span><h3>Two of you</h3><p>For partners, friends, or a first-dance song.</p><ul><li>Lead/follow clarity</li><li>Choreo or social-ready</li><li>Wedding first dance</li></ul></div>
-      <div class="lesson"><span class="mono">Group</span><h3>Workshops</h3><p>For studios, socials and dance communities.</p><ul><li>Bachazomba / Kizchata intensives</li><li>Musicality sessions</li><li>Pre-social classes</li></ul></div>
+      <div class="lesson"><span class="mono">Group</span><h3>Workshops</h3><p>For studios, socials and dance communities.</p><ul><li>Bachata, Kizomba &amp; Fusion</li><li>Bachazomba / Kizchata intensives</li><li>Musicality sessions</li><li>Pre-social classes</li></ul></div>
       <div class="lesson"><span class="mono">Events</span><h3>Teach + DJ</h3><p>A class before the social, then I play the night.</p><ul><li>One booking, full evening</li><li>Bachata / Kiz / fusion sets</li><li>Festivals and pop-ups</li></ul></div>
     </div>
     <p class="note">Rates depend on format, group size and travel. Ask and I'll send a quote.</p>
@@ -371,7 +375,7 @@ footer .fine{color:var(--mist);font-size:14px}
           </select></div>
         <div class="field"><label for="f-style">Style</label>
           <select id="f-style">
-            <option>Bachazomba</option><option>Kizchata</option><option>Bachata</option><option>Kizomba / Urban Kiz</option><option>Salsa</option><option>Zouk</option><option>Not sure yet</option>
+            <option>Bachata</option><option>Kizomba</option><option>Fusion / Urban Kiz</option><option>Bachazomba / Kizchata</option><option>Salsa</option><option>Zouk</option><option>Not sure yet</option>
           </select></div>
         <div class="field"><label for="f-level">Level</label>
           <select id="f-level"><option>Beginner</option><option>Improver</option><option>Intermediate</option><option>Advanced</option><option>Mixed group</option></select></div>
@@ -435,7 +439,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     x.clearRect(0,0,w,h);
     const mid = h/2, beats = 8, bw = w/beats;
     // beat grid
-    x.font = "500 12px 'IBM Plex Mono', monospace"; x.textAlign = "center";
+    x.font = "500 12px 'DM Mono', monospace"; x.textAlign = "center";
     const labels = ["1","2","3","tap","5","6","7","tap"];
     const play = (t/600) % beats;
     for(let i=0;i<beats;i++){
@@ -443,7 +447,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
       x.strokeStyle = LINE; x.lineWidth = 1;
       x.beginPath(); x.moveTo(bw*i,8); x.lineTo(bw*i,h-8); x.stroke();
       const active = Math.floor(play) === i;
-      x.fillStyle = active ? (i%4===3 ? SEAL : "#DAD6CA") : MIST;
+      x.fillStyle = active ? (i%4===3 ? SEAL : "#efe8dc") : MIST;
       x.fillText(labels[i], bx, h-6);
     }
     // kizomba: slow wide wave
@@ -496,7 +500,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     x.globalAlpha = 1;
     const last = pts[pts.length-1];
     x.fillStyle = SEAL; x.beginPath(); x.arc(last[0],last[1],6,0,Math.PI*2); x.fill();
-    x.font = "500 12px 'IBM Plex Mono', monospace"; x.fillStyle = SEAL; x.textAlign = "right";
+    x.font = "500 12px 'DM Mono', monospace"; x.fillStyle = SEAL; x.textAlign = "right";
     x.fillText("NEXT FLOOR →", last[0]-10, last[1]-12);
     x.fillStyle = BRASS; x.textAlign = "left";
     x.fillText("200+ VENUES", pts[0][0], 16);

@@ -1,6 +1,6 @@
 # RoninRhythm
 
-Dance instruction, DJ sets and music production from a nomadic partner dancer: Bachazomba, Kizchata, Bachata, Kizomba and fusion, with Salsa and Zouk.
+Dance instruction, DJ sets and music production from a nomadic partner dancer: Bachata, Kizomba and Fusion, plus Bachazomba and Kizchata, my own blend of the two. Some Salsa and Zouk too.
 
 A [RoninSec](https://r0n1n9.github.io/roninsec/) brand. Live at https://r0n1n9.github.io/roninrhythm/
 
