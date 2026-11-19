@@ -1,10 +1,44 @@
-# RoninRhythm
+<p align="center"><img src="favicon.svg" width="120" alt="RoninRhythm logo"></p>
+
+<h1 align="center">RoninRhythm</h1>
+
+<p align="center"><em>Dance instruction · DJ & music production · No fixed address</em></p>
 
 Dance instruction, DJ sets and music production from a nomadic partner dancer: Bachata, Kizomba and Fusion, plus Bachazomba and Kizchata, my own blend of the two. Some Salsa and Zouk too.
 
 A [RoninSec](https://r0n1n9.github.io/roninsec/) brand. Live at https://r0n1n9.github.io/roninrhythm/
 
+![RoninRhythm landing page hero](docs/screenshots/hero.png)
+
+## What's on the site
+
+The one-page site has seven numbered sections, linked from the sticky nav bar:
+
+1. **About:** the dancer's story (200+ venues, switch dancer), photos and "How I teach".
+2. **Styles:** Bachata, Kizomba and Fusion cards, plus the Bachazomba & Kizchata blend and the Salsa and Zouk extras.
+3. **Lessons:** one-on-one, couples, workshops, and Teach + DJ events.
+4. **DJ:** what gets played and an example set flow with tempo markers.
+5. **On the road:** the "200+ floors and counting" venue map.
+6. **Find events:** a teaser for **Sway**, the event-finder tool (see *Editing links*).
+7. **Book:** contact details and a booking request form.
+
+## Screenshots
+
+| About | Lessons |
+| --- | --- |
+| ![About section with photos and How I teach](docs/screenshots/about.png) | ![Lesson formats: one-on-one, couples, workshops, Teach + DJ](docs/screenshots/lessons.png) |
+| **DJ** | **Booking** |
+| ![Behind the decks: DJ blurb and example set flow](docs/screenshots/dj-set-flow.png) | ![Let's dance: contact details and booking request form](docs/screenshots/booking-form.png) |
+
+## Running locally
+
 Single static `index.html`, no build step. `.nojekyll` tells GitHub Pages to serve it as-is.
+
+```bash
+python3 -m http.server 8000   # then open http://localhost:8000/
+```
+
+Files: `index.html` (page, styles and script), `images/` (photos), and `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` and `icon-512.png` (icons).
 
 ## Editing links
 
